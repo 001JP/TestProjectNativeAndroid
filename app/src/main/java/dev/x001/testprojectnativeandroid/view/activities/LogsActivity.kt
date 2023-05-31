@@ -22,6 +22,10 @@ class LogsActivity : AppCompatActivity() {
         binding = ActivityLogsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
         val logsAdapter = LogsAdapter()
         binding.logsRecyclerView.adapter = logsAdapter
 
