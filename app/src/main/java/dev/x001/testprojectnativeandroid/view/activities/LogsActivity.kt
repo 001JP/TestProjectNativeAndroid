@@ -2,11 +2,34 @@ package dev.x001.testprojectnativeandroid.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import dev.x001.testprojectnativeandroid.R
+import androidx.activity.viewModels
+import dev.x001.testprojectnativeandroid.application.LogApplication
+import dev.x001.testprojectnativeandroid.databinding.ActivityLogsBinding
+import dev.x001.testprojectnativeandroid.view.adapter.LogsAdapter
+import dev.x001.testprojectnativeandroid.viewmodel.LogViewModel
+import dev.x001.testprojectnativeandroid.viewmodel.LogViewModelFactory
 
 class LogsActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLogsBinding
+
+    private val mLogViewModel: LogViewModel by viewModels {
+        LogViewModelFactory((this.application as LogApplication).repository)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_logs)
+        binding = ActivityLogsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val logsAdapter = LogsAdapter()
+        binding.logsRecyclerView.adapter = logsAdapter
+
+        mLogViewModel.allLogRecordList.observe(this@LogsActivity){
+            logs ->
+            if (logs.isNotEmpty()){
+                logsAdapter.setLogs(logs)
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/event_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Button 1 pressed"
@@ -15,6 +16,7 @@
         android:layout_marginTop="16dp"/>
 
     <TextView
+        android:id="@+id/timestamp_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="06/08/2022 10:55 PM"
