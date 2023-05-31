@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestProjectNativeAndroid</string>
+    <string name="show_logs"><u>Show logs</u></string>
 </resources>
